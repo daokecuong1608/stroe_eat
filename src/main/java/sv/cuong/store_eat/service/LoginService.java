@@ -1,6 +1,7 @@
 package sv.cuong.store_eat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sv.cuong.store_eat.dto.UserDTO;
 import sv.cuong.store_eat.entity.Roles;
@@ -17,6 +18,9 @@ public class LoginService implements LoginServiceIpml {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<UserDTO> getAllUser() {
 
@@ -37,14 +41,16 @@ public class LoginService implements LoginServiceIpml {
 
     @Override
     public boolean checkLogin(String username, String password) {
-        List<Users> listUser = userRepository.findByUserNameAndPassword(username, password);
-        return listUser.size() > 0;
+        Users listUser = userRepository.findByUserName(username);
+        //ktra mat khau nhap  vao vs mk csdl
+        return passwordEncoder.matches(password, listUser.getPassword());
+
     }
 
     @Override
     public boolean addUser(SignUpRequest signUpRequest) {
 
-        Roles roles= new Roles();
+        Roles roles = new Roles();
         roles.setId(signUpRequest.getRoleseId());
 
         Users users = new Users();
