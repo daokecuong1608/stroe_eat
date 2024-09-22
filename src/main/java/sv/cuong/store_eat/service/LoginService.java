@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sv.cuong.store_eat.dto.UserDTO;
 import sv.cuong.store_eat.entity.Users;
-import sv.cuong.store_eat.repository.UserInterface;
+import sv.cuong.store_eat.repository.UserRepository;
+import sv.cuong.store_eat.service.impl.LoginServiceIpml;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service //xử lý logic code
-public class LoginService {
+public class LoginService implements LoginServiceIpml {
 
     @Autowired
-private UserInterface userInterface;
+    private UserRepository userRepository;
 
-    public List<UserDTO> getAllUser(){
+    public List<UserDTO> getAllUser() {
 
         List<Users> list = new ArrayList<Users>();
         List<UserDTO> userDTOList = new ArrayList<>();
@@ -29,7 +30,14 @@ private UserInterface userInterface;
             userDTOList.add(userDTO);
 
         }
-return userDTOList;
+        return userDTOList;
     }
 
+    @Override
+    public boolean checkLogin(String username, String password) {
+        List<Users>  listUser = userRepository.findByUserNameAndPassword(username, password);
+
+
+        return listUser.size() > 0;
+    }
 }
