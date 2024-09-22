@@ -13,4 +13,6 @@ public List<UserDTO> getAllUser();
 public boolean checkLogin(String username, String password);
 
 public boolean addUser(SignUpRequest signUpRequest);
+
+
 }
