@@ -3,7 +3,9 @@ package sv.cuong.store_eat.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sv.cuong.store_eat.dto.UserDTO;
+import sv.cuong.store_eat.entity.Roles;
 import sv.cuong.store_eat.entity.Users;
+import sv.cuong.store_eat.payload.request.SignUpRequest;
 import sv.cuong.store_eat.repository.UserRepository;
 import sv.cuong.store_eat.service.impl.LoginServiceIpml;
 
@@ -35,9 +37,25 @@ public class LoginService implements LoginServiceIpml {
 
     @Override
     public boolean checkLogin(String username, String password) {
-        List<Users>  listUser = userRepository.findByUserNameAndPassword(username, password);
-
-
+        List<Users> listUser = userRepository.findByUserNameAndPassword(username, password);
         return listUser.size() > 0;
+    }
+
+    @Override
+    public boolean addUser(SignUpRequest signUpRequest) {
+
+        Roles roles= new Roles();
+        roles.setId(signUpRequest.getRoleseId());
+
+        Users users = new Users();
+        users.setFullname(signUpRequest.getFullName());
+        users.setUserName(signUpRequest.getEmail());
+        users.setPassword(signUpRequest.getPassword());
+        try {
+            userRepository.save(users);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

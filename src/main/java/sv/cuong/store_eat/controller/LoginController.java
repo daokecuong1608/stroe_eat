@@ -3,11 +3,9 @@ package sv.cuong.store_eat.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sv.cuong.store_eat.payload.ResponseData;
+import sv.cuong.store_eat.payload.request.SignUpRequest;
 import sv.cuong.store_eat.repository.UserRepository;
 import sv.cuong.store_eat.service.LoginService;
 
@@ -29,8 +27,13 @@ public class LoginController {
         } else {
             responseData.setData(false);
         }
-
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) {
+        ResponseData responseData = new ResponseData();
+        responseData.setData(loginService.addUser(signUpRequest));
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 }
