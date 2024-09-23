@@ -18,7 +18,22 @@ public class JwtUtilHelper {
         SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtPrivateKey));
         String jwts = Jwts.builder().setSubject(data).signWith(key).compact();
         return jwts;
+    }
 
+    // giải mã
+    public  boolean verifyToken(String token){
+        try {
+            SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtPrivateKey));
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+
+
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
 }
