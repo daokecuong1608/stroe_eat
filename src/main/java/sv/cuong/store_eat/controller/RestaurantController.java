@@ -37,6 +37,15 @@ public class RestaurantController {
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
+    @GetMapping()
+    public ResponseEntity<?> getAllRestaurant() {
+        // TODO: Implement logic to get all restaurant
+     ResponseData responseData = new ResponseData();
+responseData.setData(restaurantServiceIpml.getHomePageRestaurants());
+         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+
     @GetMapping("/file/{filename:.+}")
     public ResponseEntity<?> getFileRestaurant(@PathVariable String filename) {
         Resource resource = fileServiceIpml.loadFile(filename);

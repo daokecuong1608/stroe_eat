@@ -2,7 +2,7 @@ package sv.cuong.store_eat.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+
 @Setter
 @Entity(name = "restaurant")
 public class Restaurant {
@@ -50,4 +50,52 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant")
     private Set<Promo> listPromos;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public boolean isFreeship() {
+        return isFreeship;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Date getOpenDate() {
+        return openDate;
+    }
+
+    public Set<RatingRestaurant> getListRatingRestaurants() {
+        return listRatingRestaurants;
+    }
+
+    public Set<Orders> getListOrders() {
+        return listOrders;
+    }
+
+    public Set<MenuRestaurant> getListMenuRestaurants() {
+        return listMenuRestaurants;
+    }
+
+    public Set<Promo> getListPromos() {
+        return listPromos;
+    }
 }
