@@ -31,7 +31,7 @@ public class RestaurantController {
             @RequestParam String address,
             @RequestParam String open_date) {
         ResponseData responseData = new ResponseData();
-       boolean isSuccesful = restaurantServiceIpml.insertRestaurant(file,title , subtitle , description  , is_freeship , address ,open_date);
+        boolean isSuccesful = restaurantServiceIpml.insertRestaurant(file, title, subtitle, description, is_freeship, address, open_date);
 
         responseData.setData(isSuccesful);
         return new ResponseEntity<>(responseData, HttpStatus.OK);
@@ -40,20 +40,24 @@ public class RestaurantController {
     @GetMapping()
     public ResponseEntity<?> getAllRestaurant() {
         // TODO: Implement logic to get all restaurant
-     ResponseData responseData = new ResponseData();
-responseData.setData(restaurantServiceIpml.getHomePageRestaurants());
-         return new ResponseEntity<>(responseData, HttpStatus.OK);
+        ResponseData responseData = new ResponseData();
+        responseData.setData(restaurantServiceIpml.getHomePageRestaurants());
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
 
 
     @GetMapping("/file/{filename:.+}")
     public ResponseEntity<?> getFileRestaurant(@PathVariable String filename) {
         Resource resource = fileServiceIpml.loadFile(filename);
-
-
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"").body(resource);
-
     }
 
+    @GetMapping("/detail")
+    public ResponseEntity<?> getDetailRestaurant(@RequestParam int id) {
+        // TODO: Implement logic to get all restaurant
+        ResponseData responseData = new ResponseData();
+responseData.setData(restaurantServiceIpml.getDetailRestaurant(id));
+        return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
 }

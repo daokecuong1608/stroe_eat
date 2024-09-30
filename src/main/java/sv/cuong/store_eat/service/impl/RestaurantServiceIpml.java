@@ -18,6 +18,8 @@ public interface RestaurantServiceIpml {
             String open_date
     );
 
-    List<RestaurantDTO> getHomePageRestaurants();
+    public List<RestaurantDTO> getHomePageRestaurants();
+
+    public RestaurantDTO getDetailRestaurant(int id);
 
 }
