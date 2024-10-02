@@ -15,9 +15,17 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+      #confif ma JWT
 jwt:
   privateKey: yaXkMJZO9AVPm8qlZ1KG5kJG6OcnQGC1IQXVYtkkqYM=
+  #config upload file
 fileUpload:
   rootPath: C:/Users/admin/Desktop/uploads
+  #config ghi log => tu dong lang nghe info -> debug -> warn
+logging:
+  level:
+    root: info
+#  file:
+#    name: D:\BE\Intel\store_eat\ghi_log\dev.log
 
 
