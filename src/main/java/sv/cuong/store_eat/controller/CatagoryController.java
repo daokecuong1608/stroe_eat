@@ -2,6 +2,7 @@ package sv.cuong.store_eat.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,5 +25,10 @@ public class CatagoryController {
         ResponseData responseData = new ResponseData();
         responseData.setData(catagoryServiceIpml.getCatagoryHomePage());
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+    @CacheEvict(value = "catagoryhome" , allEntries = true)
+    @GetMapping("/clear-cache")
+    public String  clearCache() {
+        return  "Clear Cache";
     }
 }
