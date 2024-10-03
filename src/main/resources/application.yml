@@ -22,9 +22,9 @@ jwt:
 fileUpload:
   rootPath: C:/Users/admin/Desktop/uploads
   #config ghi log => tu dong lang nghe info -> debug -> warn
-logging:
-  level:
-    root: info
+#logging:
+#  level:
+#    root: info
 #  file:
 #    name: D:\BE\Intel\store_eat\ghi_log\dev.log
 

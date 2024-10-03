@@ -1,6 +1,7 @@
 package sv.cuong.store_eat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,6 +21,9 @@ public class CatagoryService implements CatagoryServiceIpml {
 
     @Autowired
     private CatagoryRepository catagoryRepository;
+
+    @Cacheable("catagoryhome")
+//luu du lieu lan dau lay vao ram => lan sau goi controller chi vc lay trong ram => ko can truy van
 
 
     @Override

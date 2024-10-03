@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- dinh nghia dg dan -->
+    <property name="LOGS" value="D:\BE\Intel\store_eat\ghi_log"/>
+    <!--quy dinh cau hinh console-->
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+        <!--        quy dinh so luong luu tru , thoi gian , zip file-->
+        <appender name="RollingFile"
+                  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOGS}/dev_1.log</file>
+            <encoder
+                    class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            </encoder>
+
+<!--            <rollingPolicy-->
+<!--                    class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--                &lt;!&ndash; rollover daily and when the file reaches 10 MegaBytes &ndash;&gt;-->
+<!--                <fileNamePattern>${LOGS}/archived/dev_1- %d{yyyy-MM-dd}.%i.log-->
+<!--                </fileNamePattern>-->
+<!--                <timeBasedFileNamingAndTriggeringPolicy-->
+<!--                        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--                    <maxFileSize>100MB</maxFileSize>-->
+<!--                </timeBasedFileNamingAndTriggeringPolicy>-->
+<!--            </rollingPolicy>-->
+        </appender>
+
+    <!--    project lang nghe log tang info-->
+    <root level="info">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="RollingFile"/>
+    </root>
+
+</configuration>
