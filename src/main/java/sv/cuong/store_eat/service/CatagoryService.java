@@ -30,8 +30,6 @@ public class CatagoryService implements CatagoryServiceIpml {
 //luu du lieu lan dau lay vao ram => lan sau goi controller chi vc lay trong ram => ko can truy van
     @Autowired
     private RedisTemplate redisTemplate;
-
-
     private Gson gson = new Gson();
 
     @Override
@@ -40,7 +38,7 @@ public class CatagoryService implements CatagoryServiceIpml {
 
         //ktra du lieu co tren redis chua
         String dataRedis = (String) redisTemplate.opsForValue().get("catagory");
-        if (dataRedis != null) {
+        if (dataRedis == null) {
             System.out.println("chua co data");
             PageRequest pageRequest = PageRequest.of(0, 2, Sort.by("id"));
             Page<Category> listCategory = catagoryRepository.findAll(pageRequest);

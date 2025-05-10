@@ -23,7 +23,6 @@ public class LoginService implements LoginServiceIpml {
     private PasswordEncoder passwordEncoder;
 
     public List<UserDTO> getAllUser() {
-
         List<Users> list = new ArrayList<Users>();
         List<UserDTO> userDTOList = new ArrayList<>();
         for (Users users : list) {
@@ -34,7 +33,6 @@ public class LoginService implements LoginServiceIpml {
             userDTO.setCreateDate(users.getCreateDate());
             userDTO.setPassword(users.getPassword());
             userDTOList.add(userDTO);
-
         }
         return userDTOList;
     }

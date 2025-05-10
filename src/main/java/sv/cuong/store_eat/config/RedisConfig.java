@@ -19,9 +19,9 @@ public class RedisConfig {
     }
 
     @Bean //set tempplate
-    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory) {
+    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory redisConnection) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(lettuceConnectionFactory);
+        template.setConnectionFactory(redisConnection);
         return template;
     }
 }

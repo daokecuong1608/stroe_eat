@@ -33,7 +33,6 @@ public class OrderService implements OrderServiceIpml {
             Restaurant restaurant = new Restaurant();
             restaurant.setId(orderRequest.getRestaurantID());
 
-
             Orders orders = new Orders();
             orders.setUsers(users);
             orders.setRestaurants(restaurant);
@@ -50,7 +49,6 @@ public class OrderService implements OrderServiceIpml {
 
 
                 orderItems.add(orderItem);
-
             }
 
             orderItemRepository.saveAll(orderItems);
